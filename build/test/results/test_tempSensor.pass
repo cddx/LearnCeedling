@@ -1,0 +1,22 @@
+---
+:source:
+  :path: test
+  :file: test_tempSensor.c
+:successes:
+- :test: test_TempRegisterReadsMaxValue_TheTempIstheMaxValue
+  :line: 13
+  :message: ''
+  :unity_test_time: 0
+- :test: test_TempRegisterReadsMinValue_TheTempIstheMinValue
+  :line: 26
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 2
+  :passed: 2
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.03688240000019505

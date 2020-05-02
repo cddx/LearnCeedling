@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "stdbool.h": "c",
+        "tempsensor.h": "c",
+        "i2c.h": "c",
+        "mock_i2c.h": "c",
+        "stdint.h": "c"
+    }
+}
