@@ -9,3 +9,5 @@ build/test/mocks/mock_i2c.c:
 - TEST
 src/ras.c:
 - TEST
+src/CException.c:
+- TEST
