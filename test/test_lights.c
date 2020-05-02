@@ -13,7 +13,7 @@ void test_TheHeadlightSwitchIsOff_TheHeadLightsAreOff(void)
     lights_SetHeadlightSwitchOff();
 
     // then the headlight are off
-    TEST_ASSERT_EQUAL(true, lights_AreHeadlightsOn());
+    TEST_ASSERT_EQUAL(false, lights_AreHeadlightsOn());
 }
 void test_TheHeadlightSwitchIsOn_TheHeadlightsAreOn(void)
 {

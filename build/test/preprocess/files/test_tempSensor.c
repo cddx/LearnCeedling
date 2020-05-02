@@ -1,5 +1,5 @@
 #include "build/temp/_test_tempSensor.c"
-#include "mock_i2c.h"
+#include "build/test/mocks/mock_i2c.h"
 #include "src/tempSensor.h"
 #include "D:/LearnCeedling/vendor/ceedling/vendor/unity/src/unity.h"
 

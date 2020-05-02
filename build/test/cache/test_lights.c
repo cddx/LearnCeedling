@@ -29,7 +29,7 @@ void test_TheHeadlightSwitchIsOff_TheHeadLightsAreOff(void)
 
     UnityAssertEqualNumber((UNITY_INT)((
 
-   1
+   0
 
    )), (UNITY_INT)((lights_AreHeadlightsOn())), (
 

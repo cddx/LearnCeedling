@@ -1,7 +1,7 @@
 #include <string.h>
 #include "ras.h"
 // ras = remove all sep
-char *myras(char *src, char *sep)
+char *ras(char *src, char *sep)
 {
     char *pstr;
     char *tmp = src;

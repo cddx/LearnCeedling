@@ -3,20 +3,20 @@
   :path: test
   :file: test_lights.c
 :successes:
+- :test: test_TheHeadlightSwitchIsOff_TheHeadLightsAreOff
+  :line: 10
+  :message: ''
+  :unity_test_time: 0
 - :test: test_TheHeadlightSwitchIsOn_TheHeadlightsAreOn
   :line: 18
   :message: ''
   :unity_test_time: 0
-:failures:
-- :test: test_TheHeadlightSwitchIsOff_TheHeadLightsAreOff
-  :line: 16
-  :message: Expected 1 Was 0
-  :unity_test_time: 0
+:failures: []
 :ignores: []
 :counts:
   :total: 2
-  :passed: 1
-  :failed: 1
+  :passed: 2
+  :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.031252799999947456
+:time: 0.04308209999999235
