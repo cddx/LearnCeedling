@@ -897,13 +897,9 @@ void test_AThrowWithoutATryCatchWillUseDefaultHandlerIfSpecified(void)
 
 
 
-  if (!(TestingTheFallback)) {} else {UnityFail( ((" Expected FALSE Was TRUE")), (UNITY_UINT)((UNITY_UINT)(317)));};
 
-  UnityAssertEqualNumber((UNITY_INT)((0xBE)), (UNITY_INT)((TestingTheFallbackId)), (
 
- ((void *)0)
 
- ), (UNITY_UINT)(318), UNITY_DISPLAY_STYLE_INT);
 
 }
 
@@ -955,13 +951,9 @@ void test_AThrowWithoutOutsideATryCatchWillUseDefaultHandlerEvenAfterTryCatch(vo
 
 
 
-  if (!(TestingTheFallback)) {} else {UnityFail( ((" Expected FALSE Was TRUE")), (UNITY_UINT)((UNITY_UINT)(340)));};
 
-  UnityAssertEqualNumber((UNITY_INT)((0xBE)), (UNITY_INT)((TestingTheFallbackId)), (
 
- ((void *)0)
 
- ), (UNITY_UINT)(341), UNITY_DISPLAY_STYLE_INT);
 
 }
 

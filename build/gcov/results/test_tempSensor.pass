@@ -1,14 +1,14 @@
 ---
 :source:
   :path: test
-  :file: test_lights.c
+  :file: test_tempSensor.c
 :successes:
-- :test: test_TheHeadlightSwitchIsOff_TheHeadLightsAreOff
-  :line: 10
+- :test: test_TempRegisterReadsMaxValue_TheTempIstheMaxValue
+  :line: 13
   :message: ''
   :unity_test_time: 0
-- :test: test_TheHeadlightSwitchIsOn_TheHeadlightsAreOn
-  :line: 18
+- :test: test_TempRegisterReadsMinValue_TheTempIstheMinValue
+  :line: 26
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -19,4 +19,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.018370300000242423
+:time: 0.05571400000007998

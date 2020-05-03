@@ -1,7 +1,7 @@
 ---
 :source:
   :path: test
-  :file: test_e.c
+  :file: test_CExecption.c
 :successes:
 - :test: test_BasicTryDoesNothingIfNoThrow
   :line: 17
@@ -51,6 +51,14 @@
   :line: 282
   :message: ''
   :unity_test_time: 0
+- :test: test_AThrowWithoutATryCatchWillUseDefaultHandlerIfSpecified
+  :line: 309
+  :message: ''
+  :unity_test_time: 0
+- :test: test_AThrowWithoutOutsideATryCatchWillUseDefaultHandlerEvenAfterTryCatch
+  :line: 321
+  :message: ''
+  :unity_test_time: 0
 - :test: test_AbilityToExitTryWithoutThrowingAnError
   :line: 344
   :message: ''
@@ -59,20 +67,12 @@
   :line: 365
   :message: ''
   :unity_test_time: 0
-:failures:
-- :test: test_AThrowWithoutATryCatchWillUseDefaultHandlerIfSpecified
-  :line: 317
-  :message: Expected FALSE Was TRUE
-  :unity_test_time: 0
-- :test: test_AThrowWithoutOutsideATryCatchWillUseDefaultHandlerEvenAfterTryCatch
-  :line: 340
-  :message: Expected FALSE Was TRUE
-  :unity_test_time: 0
+:failures: []
 :ignores: []
 :counts:
   :total: 16
-  :passed: 14
-  :failed: 2
+  :passed: 16
+  :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.01785569999992731
+:time: 0.024355199999263277

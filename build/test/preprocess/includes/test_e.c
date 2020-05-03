@@ -1,4 +1,0 @@
----
-- D:/LearnCeedling/vendor/ceedling/vendor/unity/src/unity.h
-- src/CException.h
-- build/temp/_test_e.c

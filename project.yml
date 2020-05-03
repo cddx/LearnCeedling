@@ -72,7 +72,10 @@
     :html_medium_threshold: 75
     :html_high_threshold: 90
     :xml_report: FALSE
-
+    :report_root: "."
+    :report_exclude: "^build|^vendor|^test|^support"
+    :report_include: "^src"
+    
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.
 # As [:tools] is blank, gcc will be used (so long as it's in your system path)
@@ -88,6 +91,7 @@
   :test: []
   :release: []
 
+  
 :plugins:
   :load_paths:
     - vendor/ceedling/plugins
@@ -95,5 +99,7 @@
     - stdout_pretty_tests_report
     - module_generator
     - raw_output_report
+    - gcov
     - xml_tests_report
+
 ...
