@@ -91,7 +91,6 @@
   :test: []
   :release: []
 
-  
 :plugins:
   :load_paths:
     - vendor/ceedling/plugins
@@ -99,7 +98,6 @@
     - stdout_pretty_tests_report
     - module_generator
     - raw_output_report
-    - gcov
     - xml_tests_report
-
+    - gcov
 ...
