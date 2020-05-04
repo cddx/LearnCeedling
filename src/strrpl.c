@@ -33,7 +33,7 @@ char *strrpl(char *str, char *oldstr, char *newstr)
     strcpy(str, bstr);
     return str;
 }
-
+#ifdef _DEBUG
 int main(int argc, char const *argv[])
 {
     char str[] = "YY-MM-DD hh:mm:ss\n";
@@ -48,3 +48,4 @@ int main(int argc, char const *argv[])
     printf("%s", str);
     return 0;
 }
+#endif
