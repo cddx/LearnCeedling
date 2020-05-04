@@ -287,14 +287,14 @@
   - stdout_pretty_tests_report
   - module_generator
   - raw_output_report
-  - gcov
   - xml_tests_report
+  - gcov
   :display_raw_test_results: false
   :stdout_pretty_tests_report_path: vendor/ceedling/plugins/stdout_pretty_tests_report
   :module_generator_path: vendor/ceedling/plugins/module_generator
   :raw_output_report_path: vendor/ceedling/plugins/raw_output_report
-  :gcov_path: vendor/ceedling/plugins/gcov
   :xml_tests_report_path: vendor/ceedling/plugins/xml_tests_report
+  :gcov_path: vendor/ceedling/plugins/gcov
 :gcov:
   :html_report: true
   :html_report_type: detailed

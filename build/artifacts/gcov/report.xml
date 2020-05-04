@@ -66,15 +66,18 @@
 			<Name>test/test_ras.c::test_ras_MemoryOverfull</Name>
 		</Test>
 		<Test id="22">
-			<Name>test/test_tempSensor.c::test_TempRegisterReadsMaxValue_TheTempIstheMaxValue</Name>
+			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue</Name>
 		</Test>
 		<Test id="23">
-			<Name>test/test_tempSensor.c::test_TempRegisterReadsMinValue_TheTempIstheMinValue</Name>
+			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue</Name>
+		</Test>
+		<Test id="24">
+			<Name>test/test_tempSensor.c::test_WhenTempRegisterReads500_ThenTheTempIstheZero</Name>
 		</Test>
 	</SuccessfulTests>
 	<IgnoredTests/>
 	<Statistics>
-		<Tests>23</Tests>
+		<Tests>24</Tests>
 		<Ignores>0</Ignores>
 		<FailuresTotal>0</FailuresTotal>
 		<Errors>0</Errors>

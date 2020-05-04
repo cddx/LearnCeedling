@@ -4,13 +4,15 @@
 #include "D:/LearnCeedling/vendor/ceedling/vendor/unity/src/unity.h"
 
 
+uint8_t tempRegisterAddress;
+
 void setUp(void)
 
 {
 
+    tempRegisterAddress = 0x03;
+
 }
-
-
 
 void tearDown(void)
 
@@ -18,11 +20,9 @@ void tearDown(void)
 
 }
 
-void test_TempRegisterReadsMaxValue_TheTempIstheMaxValue(void)
+void test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue(void)
 
 {
-
-    uint8_t tempRegisterAddress = 0x03;
 
     float expectedTemperature = 104.6f;
 
@@ -48,11 +48,11 @@ void test_TempRegisterReadsMaxValue_TheTempIstheMaxValue(void)
 
 }
 
-void test_TempRegisterReadsMinValue_TheTempIstheMinValue(void)
+void test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue(void)
 
 {
 
-    uint8_t tempRegisterAddress = 0x03;
+
 
     float expectedTemperature = -100.0f;
 
@@ -75,5 +75,35 @@ void test_TempRegisterReadsMinValue_TheTempIstheMinValue(void)
    ((void *)0)
 
    ), (UNITY_UINT)(37));
+
+}
+
+void test_WhenTempRegisterReads500_ThenTheTempIstheZero(void)
+
+{
+
+
+
+    float expectedTemperature = 0.0f;
+
+    float tolerance = 0.1f;
+
+
+
+
+
+    i2c_readRegister_CMockExpectAndReturn(46, tempRegisterAddress, 500);
+
+
+
+
+
+    float actualTemperature = tempSensor_getTemperature();
+
+    UnityAssertFloatsWithin((UNITY_FLOAT)((tolerance)), (UNITY_FLOAT)((expectedTemperature)), (UNITY_FLOAT)((actualTemperature)), (
+
+   ((void *)0)
+
+   ), (UNITY_UINT)(50));
 
 }

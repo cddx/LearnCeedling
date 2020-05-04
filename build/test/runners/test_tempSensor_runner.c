@@ -12,8 +12,9 @@ char* GlobalOrderError;
 /*=======External Functions This Runner Calls=====*/
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_TempRegisterReadsMaxValue_TheTempIstheMaxValue(void);
-extern void test_TempRegisterReadsMinValue_TheTempIstheMinValue(void);
+extern void test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue(void);
+extern void test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue(void);
+extern void test_WhenTempRegisterReads500_ThenTheTempIstheZero(void);
 
 
 /*=======Mock Management=====*/
@@ -83,8 +84,9 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
 int main(void)
 {
   UnityBegin("test_tempSensor.c");
-  run_test(test_TempRegisterReadsMaxValue_TheTempIstheMaxValue, "test_TempRegisterReadsMaxValue_TheTempIstheMaxValue", 13);
-  run_test(test_TempRegisterReadsMinValue_TheTempIstheMinValue, "test_TempRegisterReadsMinValue_TheTempIstheMinValue", 26);
+  run_test(test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue, "test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue", 14);
+  run_test(test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue, "test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue", 26);
+  run_test(test_WhenTempRegisterReads500_ThenTheTempIstheZero, "test_WhenTempRegisterReads500_ThenTheTempIstheZero", 39);
 
   CMock_Guts_MemFreeFinal();
   return UnityEnd();
