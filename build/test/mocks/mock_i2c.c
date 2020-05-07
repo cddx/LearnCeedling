@@ -11,6 +11,7 @@ static const char* CMockString_registerAddress = "registerAddress";
 typedef struct _CMOCK_i2c_readRegister_CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
+  int ExpectAnyArgsBool;
   uint16_t ReturnVal;
   int CallOrder;
   uint8_t Expected_registerAddress;
@@ -86,9 +87,12 @@ uint16_t i2c_readRegister(uint8_t registerAddress)
     UNITY_TEST_FAIL(cmock_line, CMockStringCalledEarly);
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, CMockStringCalledLate);
+  if (!cmock_call_instance->ExpectAnyArgsBool)
+  {
   {
     UNITY_SET_DETAILS(CMockString_i2c_readRegister,CMockString_registerAddress);
     UNITY_TEST_ASSERT_EQUAL_HEX8(cmock_call_instance->Expected_registerAddress, registerAddress, cmock_line, CMockStringMismatch);
+  }
   }
   if (Mock.i2c_readRegister_CallbackFunctionPointer != NULL)
   {
@@ -113,8 +117,24 @@ void i2c_readRegister_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, uint16_t 
   Mock.i2c_readRegister_CallInstance = CMock_Guts_MemChain(Mock.i2c_readRegister_CallInstance, cmock_guts_index);
   Mock.i2c_readRegister_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ExpectAnyArgsBool = (int)0;
   cmock_call_instance->ReturnVal = cmock_to_return;
   Mock.i2c_readRegister_IgnoreBool = (int)1;
+}
+
+void i2c_readRegister_CMockExpectAnyArgsAndReturn(UNITY_LINE_TYPE cmock_line, uint16_t cmock_to_return)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_i2c_readRegister_CALL_INSTANCE));
+  CMOCK_i2c_readRegister_CALL_INSTANCE* cmock_call_instance = (CMOCK_i2c_readRegister_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
+  memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
+  Mock.i2c_readRegister_CallInstance = CMock_Guts_MemChain(Mock.i2c_readRegister_CallInstance, cmock_guts_index);
+  Mock.i2c_readRegister_IgnoreBool = (int)0;
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExpectAnyArgsBool = (int)0;
+  cmock_call_instance->ReturnVal = cmock_to_return;
+  cmock_call_instance->ExpectAnyArgsBool = (int)1;
 }
 
 void i2c_readRegister_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, uint8_t registerAddress, uint16_t cmock_to_return)
@@ -127,6 +147,7 @@ void i2c_readRegister_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, uint8_t r
   Mock.i2c_readRegister_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
+  cmock_call_instance->ExpectAnyArgsBool = (int)0;
   CMockExpectParameters_i2c_readRegister(cmock_call_instance, registerAddress);
   cmock_call_instance->ReturnVal = cmock_to_return;
 }

@@ -1,4 +1,5 @@
 # LearnCeedling
+
 ## lauch.json
     {
         // Use IntelliSense to learn about possible attributes.
@@ -28,3 +29,9 @@
             }
         ]
     }
+
+
+How To Generate Html Report
+----------------------------
+    1 ceedling gcov:all 
+    2 ceedling utils:gcov 
