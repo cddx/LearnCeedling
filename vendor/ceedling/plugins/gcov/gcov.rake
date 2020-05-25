@@ -1,3 +1,6 @@
+require 'reportgenerator_reportinator'
+require 'gcovr_reportinator'
+
 directory(GCOV_BUILD_OUTPUT_PATH)
 directory(GCOV_RESULTS_PATH)
 directory(GCOV_ARTIFACTS_PATH)
@@ -16,7 +19,7 @@ rule(/#{GCOV_BUILD_OUTPUT_PATH}\/#{'.+\\' + EXTENSION_OBJECT}$/ => [
        end
      ]) do |object|
 
-  if File.basename(object.source) =~ /^(#{PROJECT_TEST_FILE_PREFIX}|#{CMOCK_MOCK_PREFIX}|#{GCOV_IGNORE_SOURCES.join('|')})/i
+  if File.basename(object.source) =~ /^(#{PROJECT_TEST_FILE_PREFIX}|#{CMOCK_MOCK_PREFIX})|(#{VENDORS_FILES.map{|source| '\b' + source + '\b'}.join('|')})/
     @ceedling[:generator].generate_object_file(
       TOOLS_GCOV_COMPILER,
       OPERATION_COMPILE_SYM,
@@ -32,14 +35,15 @@ end
 
 rule(/#{GCOV_BUILD_OUTPUT_PATH}\/#{'.+\\' + EXTENSION_EXECUTABLE}$/) do |bin_file|
   lib_args = @ceedling[:test_invoker].convert_libraries_to_arguments()
-
+  lib_paths = @ceedling[:test_invoker].get_library_paths_to_arguments()
   @ceedling[:generator].generate_executable_file(
     TOOLS_GCOV_LINKER,
     GCOV_SYM,
     bin_file.prerequisites,
     bin_file.name,
+    @ceedling[:file_path_utils].form_test_build_map_filepath(bin_file.name),
     lib_args,
-    @ceedling[:file_path_utils].form_test_build_map_filepath(bin_file.name)
+    lib_paths
   )
 end
 
@@ -154,67 +158,52 @@ if PROJECT_USE_DEEP_DEPENDENCIES
 end
 
 namespace UTILS_SYM do
-  def gcov_args_builder(opts)
-    args = ""
-    args += "-r \"#{opts[:gcov_report_root] || '.'}\" "
-    args += "-f \"#{opts[:gcov_report_include]}\" " unless opts[:gcov_report_include].nil?
-    args += "-e \"#{opts[:gcov_report_exclude] || GCOV_FILTER_EXCLUDE}\" "
-    [ :gcov_fail_under_line, :gcov_fail_under_branch, :gcov_html_medium_threshold, :gcov_html_high_threshold].each do |opt|
-      args += "--#{opt.to_s.gsub('_','-').sub(/:?gcov-/,'')} #{opts[opt]} " unless opts[opt].nil?
-    end
-    return args
+  # Report Creation Utilities
+  UTILITY_NAME_GCOVR = "gcovr"
+  UTILITY_NAME_REPORT_GENERATOR = "ReportGenerator"
+  UTILITY_NAMES = [UTILITY_NAME_GCOVR, UTILITY_NAME_REPORT_GENERATOR]
+
+  # Returns true is the given utility is enabled, otherwise returns false.
+  def is_utility_enabled(opts, utility_name)
+    return !(opts.nil?) && !(opts[:gcov_utilities].nil?) && (opts[:gcov_utilities].map(&:upcase).include? utility_name.upcase)
   end
 
-  desc 'Create gcov code coverage html/xml report (must run ceedling gcov first).'
-  task GCOV_SYM do
 
+  desc "Create gcov code coverage html/xml/json/text report(s). (Note: Must run 'ceedling gcov' first)."
+  task GCOV_SYM do
+    # Get the gcov options from project.yml.
+    opts = @ceedling[:configurator].project_config_hash
+
+    # Create the artifacts output directory.
     if !File.directory? GCOV_ARTIFACTS_PATH
       FileUtils.mkdir_p GCOV_ARTIFACTS_PATH
     end
 
-    args = gcov_args_builder(@ceedling[:configurator].project_config_hash)
-
-    if @ceedling[:configurator].project_config_hash[:gcov_html_report].nil?
-      puts "In your project.yml, define: \n\n:gcov:\n  :html_report:\n\n to true or false to refine this feature."
-      puts "For now, assumimg you want an html report generated."
-      html_enabled = true
-    else
-      html_enabled = @ceedling[:configurator].project_config_hash[:gcov_html_report]
+    # Remove unsupported reporting utilities.
+    if !(opts[:gcov_utilities].nil?)
+      opts[:gcov_utilities].reject! { |item| !(UTILITY_NAMES.map(&:upcase).include? item.upcase) }
     end
 
-    if @ceedling[:configurator].project_config_hash[:gcov_xml_report].nil?
-      puts "In your project.yml, define: \n\n:gcov:\n  :xml_report:\n\n to true or false to refine this feature."
-      puts "For now, assumimg you do not want an xml report generated."
-      xml_enabled = false
-    else
-      xml_enabled = @ceedling[:configurator].project_config_hash[:gcov_xml_report]
+    # Default to gcovr when no reporting utilities are specified.
+    if opts[:gcov_utilities].nil? || opts[:gcov_utilities].empty?
+      opts[:gcov_utilities] = [UTILITY_NAME_GCOVR]
     end
 
-    if html_enabled
-      if @ceedling[:configurator].project_config_hash[:gcov_html_report_type] == 'basic'
-        puts "Creating a basic html report of gcov results in #{GCOV_ARTIFACTS_FILE}..."
-        command = @ceedling[:tool_executor].build_command_line(TOOLS_GCOV_POST_REPORT_BASIC, [], args)
-        @ceedling[:tool_executor].exec(command[:line], command[:options])
-      elsif @ceedling[:configurator].project_config_hash[:gcov_html_report_type] == 'detailed'
-        puts "Creating a detailed html report of gcov results in #{GCOV_ARTIFACTS_FILE}..."
-        command = @ceedling[:tool_executor].build_command_line(TOOLS_GCOV_POST_REPORT_ADVANCED, [], args)
-        @ceedling[:tool_executor].exec(command[:line], command[:options])
-
-      else
-        puts "In your project.yml, define: \n\n:gcov:\n  :html_report_type:\n\n to basic or detailed to refine this feature."
-        puts "For now, just creating basic."
-        puts "Creating a basic html report of gcov results in #{GCOV_ARTIFACTS_FILE}..."
-        command = @ceedling[:tool_executor].build_command_line(TOOLS_GCOV_POST_REPORT_BASIC, [], args)
-        @ceedling[:tool_executor].exec(command[:line], command[:options])
-      end
+    if opts[:gcov_reports].nil?
+      opts[:gcov_reports] = []
     end
 
-    if xml_enabled
-      puts "Creating an xml report of gcov results in #{GCOV_ARTIFACTS_FILE_XML}..."
-      command = @ceedling[:tool_executor].build_command_line(TOOLS_GCOV_POST_REPORT_XML, [], args)
-      @ceedling[:tool_executor].exec(command[:line], command[:options])
+    gcovr_reportinator = GcovrReportinator.new(@ceedling)
+    gcovr_reportinator.support_deprecated_options(opts)
+
+    if is_utility_enabled(opts, UTILITY_NAME_GCOVR)
+      gcovr_reportinator.make_reports(opts)
     end
 
-    puts "Done."
+    if is_utility_enabled(opts, UTILITY_NAME_REPORT_GENERATOR)
+      reportgenerator_reportinator = ReportGeneratorReportinator.new(@ceedling)
+      reportgenerator_reportinator.make_reports(opts)
+    end
+
   end
 end

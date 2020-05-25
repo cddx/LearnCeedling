@@ -44,6 +44,7 @@ void verifyTest(void)
 {
   CMock_Verify();
 }
+
 /*=======Test Runner Used To Run Each Test=====*/
 static void run_test(UnityTestFunction func, const char* name, int line_num)
 {
@@ -59,10 +60,8 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
     CMock_Init();
     if (TEST_PROTECT())
     {
-
-            setUp();
-            func();
-
+        setUp();
+        func();
     }
     if (TEST_PROTECT())
     {
@@ -73,7 +72,6 @@ static void run_test(UnityTestFunction func, const char* name, int line_num)
     UNITY_EXEC_TIME_STOP();
     UnityConcludeTest();
 }
-
 
 /*=======MAIN=====*/
 int main(void)

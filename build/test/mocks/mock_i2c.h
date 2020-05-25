@@ -26,6 +26,8 @@ void mock_i2c_Verify(void);
 
 #define i2c_readRegister_IgnoreAndReturn(cmock_retval) i2c_readRegister_CMockIgnoreAndReturn(__LINE__, cmock_retval)
 void i2c_readRegister_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, uint16_t cmock_to_return);
+#define i2c_readRegister_StopIgnore() i2c_readRegister_CMockStopIgnore()
+void i2c_readRegister_CMockStopIgnore(void);
 #define i2c_readRegister_ExpectAnyArgsAndReturn(cmock_retval) i2c_readRegister_CMockExpectAnyArgsAndReturn(__LINE__, cmock_retval)
 void i2c_readRegister_CMockExpectAnyArgsAndReturn(UNITY_LINE_TYPE cmock_line, uint16_t cmock_to_return);
 #define i2c_readRegister_ExpectAndReturn(registerAddress, cmock_retval) i2c_readRegister_CMockExpectAndReturn(__LINE__, registerAddress, cmock_retval)

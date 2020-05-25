@@ -1,13 +1,11 @@
 ---
-D:/LearnCeedling/vendor/ceedling/vendor/unity/src/unity.c:
-- TEST
-src/tempSensor.c:
-- TEST
-build/test/mocks/mock_i2c.c:
-- TEST
 src/CException.c:
 - TEST
 src/lights.c:
 - TEST
 src/ras.c:
+- TEST
+build/test/mocks/mock_i2c.c:
+- TEST
+src/tempSensor.c:
 - TEST

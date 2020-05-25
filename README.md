@@ -1,6 +1,16 @@
 # LearnCeedling
+project.yml
 
-## lauch.json
+    :plugins:
+    :load_paths:
+        - vendor/ceedling/plugins
+    :enabled:
+        - stdout_pretty_tests_report
+        - module_generator
+        - raw_output_report
+        - xml_tests_report
+        - gcov
+## launch.json
     {
         // Use IntelliSense to learn about possible attributes.
         // Hover to view descriptions of existing attributes.
@@ -35,3 +45,5 @@ How To Generate Html Report
 ----------------------------
     1 ceedling gcov:all 
     2 ceedling utils:gcov 
+    3 ceedling clobber # 请除所以生成的文件
+    4 cmock array 的mock 函数要用uint8_t 不能用char
