@@ -1,5 +1,5 @@
 ---
 - D:/LearnCeedling/vendor/ceedling/vendor/unity/src/unity.h
 - src/tempSensor.h
-- mock_i2c.h
+- build/test/mocks/mock_i2c.h
 - build/temp/_test_tempSensor.c

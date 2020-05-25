@@ -47,3 +47,4 @@ How To Generate Html Report
     2 ceedling utils:gcov 
     3 ceedling clobber # 请除所以生成的文件
     4 cmock array 的mock 函数要用uint8_t 不能用char
+    5 使用1可以产生unit test的所以代码覆盖率，再用2查看htmail报告，确认test case 是否完备
