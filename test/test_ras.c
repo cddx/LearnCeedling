@@ -19,14 +19,14 @@ void test_ras_StringWithSpace_WithoutSpace(void)
 }
 void test_ras_StringWithNumber_WithoutNumber(void)
 {
-    strcpy(buffer, "this123is456a7890test");
+    strcpy(buffer, "1this123is456a7890tes2t3");
     char *actual = ras(buffer, "1234567890");
     char *expected = "thisisatest";
 
     TEST_ASSERT_EQUAL_STRING(expected, actual);
 }
 
-void test_ras_MemoryOverfull(void)
+void test_ras_MemoryOverFull(void)
 {
     memset(buffer, 'X', 100);
     strcpy(&buffer[5], " 1a 2b 3c 4d ");

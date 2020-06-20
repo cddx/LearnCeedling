@@ -12,7 +12,7 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_ras_StringWithSpace_WithoutSpace(void);
 extern void test_ras_StringWithNumber_WithoutNumber(void);
-extern void test_ras_MemoryOverfull(void);
+extern void test_ras_MemoryOverFull(void);
 
 
 /*=======Mock Management=====*/
@@ -79,7 +79,7 @@ int main(void)
   UnityBegin("test_ras.c");
   run_test(test_ras_StringWithSpace_WithoutSpace, "test_ras_StringWithSpace_WithoutSpace", 12);
   run_test(test_ras_StringWithNumber_WithoutNumber, "test_ras_StringWithNumber_WithoutNumber", 20);
-  run_test(test_ras_MemoryOverfull, "test_ras_MemoryOverfull", 29);
+  run_test(test_ras_MemoryOverFull, "test_ras_MemoryOverFull", 29);
 
   return UnityEnd();
 }
