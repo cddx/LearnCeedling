@@ -1,10 +1,11 @@
 #include <string.h>
 #include "unity.h"
 #include "ras.h"
-char buffer[100];
+#define BUFFER_SIZE 100
+char buffer[BUFFER_SIZE];
 void setUp(void)
 {
-    memset(buffer, 0, 100);
+    memset(buffer, 0, BUFFER_SIZE);
 }
 void tearDown(void)
 {
@@ -26,9 +27,9 @@ void test_ras_StringWithNumber_WithoutNumber(void)
     TEST_ASSERT_EQUAL_STRING(expected, actual);
 }
 
-void test_ras_MemoryOverFull(void)
+void test_ras_out_of_range(void)
 {
-    memset(buffer, 'X', 100);
+    memset(buffer, 'X', BUFFER_SIZE);
     strcpy(&buffer[5], " 1a 2b 3c 4d ");
     int len = strlen(&buffer[5]);
     char *actual = ras(&buffer[5], " ");
@@ -37,4 +38,5 @@ void test_ras_MemoryOverFull(void)
     TEST_ASSERT_EQUAL_STRING(expected, actual);
     buffer[5] = 0;
     TEST_ASSERT_EQUAL_STRING("XXXXX", buffer);
+    TEST_ASSERT_EQUAL_CHAR_ARRAY('X', buffer[5 + len + 1], (BUFFER_SIZE - 5 - len - 1));
 }

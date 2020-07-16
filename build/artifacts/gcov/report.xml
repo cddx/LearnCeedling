@@ -63,7 +63,7 @@
 			<Name>test/test_ras.c::test_ras_StringWithNumber_WithoutNumber</Name>
 		</Test>
 		<Test id="21">
-			<Name>test/test_ras.c::test_ras_MemoryOverfull</Name>
+			<Name>test/test_ras.c::test_ras_MemoryOverFull</Name>
 		</Test>
 		<Test id="22">
 			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue</Name>

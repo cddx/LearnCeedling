@@ -1,6 +1,8 @@
 #include "build/temp/_test_ras.c"
 #include "src/ras.h"
 #include "D:/LearnCeedling/vendor/ceedling/vendor/unity/src/unity.h"
+
+
 char buffer[100];
 
 void setUp(void)
@@ -33,7 +35,7 @@ void test_ras_StringWithSpace_WithoutSpace(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(18));
+   ), (UNITY_UINT)(19));
 
 }
 
@@ -53,13 +55,13 @@ void test_ras_StringWithNumber_WithoutNumber(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(26));
+   ), (UNITY_UINT)(27));
 
 }
 
 
 
-void test_ras_MemoryOverFull(void)
+void test_ras_out_of_range(void)
 
 {
 
@@ -79,7 +81,7 @@ void test_ras_MemoryOverFull(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(37));
+   ), (UNITY_UINT)(38));
 
     buffer[5] = 0;
 
@@ -87,6 +89,12 @@ void test_ras_MemoryOverFull(void)
 
    ((void *)0)
 
-   ), (UNITY_UINT)(39));
+   ), (UNITY_UINT)(40));
+
+    UnityAssertEqualIntArray(( const void*)(('X')), ( const void*)((buffer[5 + len + 1])), (UNITY_UINT32)(((100 - 5 - len - 1))), (
+
+   ((void *)0)
+
+   ), (UNITY_UINT)(41), UNITY_DISPLAY_STYLE_CHAR, UNITY_ARRAY_TO_ARRAY);
 
 }

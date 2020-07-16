@@ -14,7 +14,7 @@ project.yml
     {
         // Use IntelliSense to learn about possible attributes.
         // Hover to view descriptions of existing attributes.
-        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+        // For more information, visit: https://go.microsoft.ccom/fwlink/?linkid=830387
         "version": "0.2.0",
         "configurations": [
             {
@@ -47,4 +47,4 @@ How To Generate Html Report
     2 ceedling utils:gcov 或者 ceedling gcov:all utils:gcov
     3 ceedling clobber # 请除所以生成的文件
     4 cmock array 的mock 函数要用uint8_t 不能用char
-    5 使用1可以产生unit test的所以代码覆盖率，再用2查看htmail报告，确认test case 是否完备
+    5 使用1可以产生unit test的所以代码覆盖率，再用2查看html报告，确认test case 程序路径的覆盖率

@@ -3,18 +3,81 @@
 	<FailedTests/>
 	<SuccessfulTests>
 		<Test id="1">
-			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue</Name>
+			<Name>test/test_CExecption.c::test_BasicTryDoesNothingIfNoThrow</Name>
 		</Test>
 		<Test id="2">
-			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue</Name>
+			<Name>test/test_CExecption.c::test_BasicThrowAndCatch</Name>
 		</Test>
 		<Test id="3">
+			<Name>test/test_CExecption.c::test_BasicThrowAndCatch_WithMiniSyntax</Name>
+		</Test>
+		<Test id="4">
+			<Name>test/test_CExecption.c::test_VerifyVolatilesSurviveThrowAndCatch</Name>
+		</Test>
+		<Test id="5">
+			<Name>test/test_CExecption.c::test_ThrowFromASubFunctionAndCatchInRootFunc</Name>
+		</Test>
+		<Test id="6">
+			<Name>test/test_CExecption.c::test_ThrowAndCatchFromASubFunctionAndRethrowToCatchInRootFunc</Name>
+		</Test>
+		<Test id="7">
+			<Name>test/test_CExecption.c::test_ThrowAndCatchFromASubFunctionAndNoRethrowToCatchInRootFunc</Name>
+		</Test>
+		<Test id="8">
+			<Name>test/test_CExecption.c::test_ThrowAnErrorThenEnterATryBlockFromWithinCatch_VerifyThisDoesntCorruptExceptionId</Name>
+		</Test>
+		<Test id="9">
+			<Name>test/test_CExecption.c::test_ThrowAnErrorThenEnterATryBlockFromWithinCatch_VerifyThatEachExceptionIdIndependent</Name>
+		</Test>
+		<Test id="10">
+			<Name>test/test_CExecption.c::test_CanHaveMultipleTryBlocksInASingleFunction</Name>
+		</Test>
+		<Test id="11">
+			<Name>test/test_CExecption.c::test_CanHaveNestedTryBlocksInASingleFunction_ThrowInside</Name>
+		</Test>
+		<Test id="12">
+			<Name>test/test_CExecption.c::test_CanHaveNestedTryBlocksInASingleFunction_ThrowOutside</Name>
+		</Test>
+		<Test id="13">
+			<Name>test/test_CExecption.c::test_AThrowWithoutATryCatchWillUseDefaultHandlerIfSpecified</Name>
+		</Test>
+		<Test id="14">
+			<Name>test/test_CExecption.c::test_AThrowWithoutOutsideATryCatchWillUseDefaultHandlerEvenAfterTryCatch</Name>
+		</Test>
+		<Test id="15">
+			<Name>test/test_CExecption.c::test_AbilityToExitTryWithoutThrowingAnError</Name>
+		</Test>
+		<Test id="16">
+			<Name>test/test_CExecption.c::test_AbilityToExitTryWillOnlyExitOneLevel</Name>
+		</Test>
+		<Test id="17">
+			<Name>test/test_lights.c::test_TheHeadlightSwitchIsOff_TheHeadLightsAreOff</Name>
+		</Test>
+		<Test id="18">
+			<Name>test/test_lights.c::test_TheHeadlightSwitchIsOn_TheHeadlightsAreOn</Name>
+		</Test>
+		<Test id="19">
+			<Name>test/test_ras.c::test_ras_StringWithSpace_WithoutSpace</Name>
+		</Test>
+		<Test id="20">
+			<Name>test/test_ras.c::test_ras_StringWithNumber_WithoutNumber</Name>
+		</Test>
+		<Test id="21">
+			<Name>test/test_ras.c::test_ras_out_of_range</Name>
+		</Test>
+		<Test id="22">
+			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMaxValue_ThenTheTempIstheMaxValue</Name>
+		</Test>
+		<Test id="23">
+			<Name>test/test_tempSensor.c::test_WhenTempRegisterReadsMinValue_ThenTheTempIstheMinValue</Name>
+		</Test>
+		<Test id="24">
 			<Name>test/test_tempSensor.c::test_WhenTempRegisterReads500_ThenTheTempIstheZero</Name>
 		</Test>
 	</SuccessfulTests>
 	<IgnoredTests/>
 	<Statistics>
-		<Tests>3</Tests>
+		<Tests>24</Tests>
 		<Ignores>0</Ignores>
 		<FailuresTotal>0</FailuresTotal>
 		<Errors>0</Errors>
